@@ -14,6 +14,10 @@ RUN cd /source/ && \
     MIX_ENV=test mix test --color --trace && \
     mix do deps.get, deps.compile, release
 
+RUN rm -rf /release && \
+    mv /source/rel /release && \
+    rm -rf /source /root/.mix /root/.hex
+
 EXPOSE 4000
 
-ENTRYPOINT ["/source/rel/hello_world/bin/hello_world", "foreground"]
+ENTRYPOINT ["/release/hello_world/bin/hello_world", "foreground"]
