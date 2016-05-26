@@ -14,8 +14,6 @@ RUN cd /source/ && \
     MIX_ENV=test mix test --color --trace && \
     mix do deps.get, deps.compile, release
 
-RUN find /source/rel |grep bin
-
 EXPOSE 4000
 
 ENTRYPOINT ["/source/rel/hello_world/bin/hello_world", "foreground"]
